@@ -185,7 +185,7 @@ public class CadastroCliente extends javax.swing.JPanel {
             validator.assertValid(cpFormatadoCpf.getText());
             
             if( !cpTelefone.getText().equals("")){
-                   JOptionPane.showMessageDialog(null,"Incira um telefone");
+                   JOptionPane.showMessageDialog(null,"Incira um numero de telefone");
                 return false;
             }
             if(cpSexo.getSelectedItem().equals("Selecione")){
