@@ -5,6 +5,8 @@
  */
 package validacaojava;
 
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,9 @@ public class CadastroCliente extends javax.swing.JPanel {
      */
     public CadastroCliente() {
         initComponents();
+        cpSexo.addItem("Masculino");
+        cpSexo.addItem("Feminino");
+        cpSexo.addItem("Outros");
     }
 
     /**
@@ -29,16 +34,19 @@ public class CadastroCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cpFormatadoTelefone = new javax.swing.JFormattedTextField();
         labelNome = new javax.swing.JLabel();
         labelCadastro = new javax.swing.JLabel();
         labelCpf = new javax.swing.JLabel();
         labelTelefone = new javax.swing.JLabel();
         cpNome = new javax.swing.JTextField();
-        cpCpf = new javax.swing.JTextField();
-        cpTelefone = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        cpSexo = new javax.swing.JComboBox<>();
+        labelSexo = new javax.swing.JLabel();
+        cpFormatadoCpf = new javax.swing.JFormattedTextField();
+        cpTelefone = new javax.swing.JFormattedTextField();
+
+        cpFormatadoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(##)####-#####"))));
 
         setBackground(new java.awt.Color(204, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -57,88 +65,71 @@ public class CadastroCliente extends javax.swing.JPanel {
         labelTelefone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTelefone.setText("Telefone:");
 
-        cpNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpNomeActionPerformed(evt);
-            }
-        });
-        cpNome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cpNomeKeyPressed(evt);
-            }
-        });
-
-        cpCpf.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                cpCpfMouseDragged(evt);
-            }
-        });
-        cpCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpCpfActionPerformed(evt);
-            }
-        });
-        cpCpf.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
-                cpCpfVetoableChange(evt);
-            }
-        });
-
-        cpTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpTelefoneActionPerformed(evt);
-            }
-        });
-
         btnSalvar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btnSalvar.setText("Salvar");
-        btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseMoved(evt);
-            }
-        });
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cpSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+
+        labelSexo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelSexo.setText("Sexo:");
+
+        try {
+            cpFormatadoCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            cpTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cpTelefoneActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Sexo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNome)
-                            .addComponent(labelCpf)
-                            .addComponent(labelTelefone)
-                            .addComponent(jLabel1))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cpTelefone)
-                            .addComponent(cpCpf)
-                            .addComponent(cpNome)
-                            .addComponent(jComboBox1, 0, 215, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelCadastro)))
-                .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelCadastro))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelNome)
+                                    .addComponent(labelCpf)
+                                    .addComponent(labelSexo))
+                                .addGap(26, 26, 26)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(cpSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cpFormatadoCpf)
+                                        .addGap(3, 3, 3))
+                                    .addComponent(cpTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,71 +141,79 @@ public class CadastroCliente extends javax.swing.JPanel {
                     .addComponent(labelNome)
                     .addComponent(cpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCpf)
-                    .addComponent(cpCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cpFormatadoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefone)
-                    .addComponent(cpTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(cpTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cpSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSexo))
                 .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cpNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpNomeActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        if (this.validarCampos()) {
+            JOptionPane.showMessageDialog(null, "Campos Preenchidos coretamente");
+            
+            
+        }
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cpTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpTelefoneActionPerformed
+    private boolean validarCampos() {
+        CPFValidator validator = new CPFValidator();
 
-    private void cpCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpCpfActionPerformed
+        try {
+            
+            String nome=cpNome.getText();
+            if(nome.trim().equals("")){
+              JOptionPane.showMessageDialog(null,"Informe o nome"); 
+              return false;
+            }
+          
+            validator.assertValid(cpFormatadoCpf.getText());
+            
+            if( !cpTelefone.getText().equals("")){
+                   JOptionPane.showMessageDialog(null,"Incira um telefone");
+                return false;
+            }
+            if(cpSexo.getSelectedItem().equals("Selecione")){
+                JOptionPane.showMessageDialog(null,"selecione sexo");
+                return false;
+            }
+            
+            
+             return true; 
+        } catch (InvalidStateException e) { 
+         JOptionPane.showMessageDialog(null, "Cpf Invalido"+e.getInvalidMessages());
+        }
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarActionPerformed
+        return false;
 
-    private void cpNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpNomeKeyPressed
-      
-        System.out.println("voce Digitou\t"+cpNome.getText());
-    }//GEN-LAST:event_cpNomeKeyPressed
-
-    private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
- JOptionPane.showMessageDialog (null,"agora"); 
-    }//GEN-LAST:event_btnSalvarMouseMoved
-
-    private void cpCpfVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_cpCpfVetoableChange
-        
-    }//GEN-LAST:event_cpCpfVetoableChange
-
-    private void cpCpfMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cpCpfMouseDragged
-     
-    }//GEN-LAST:event_cpCpfMouseDragged
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSalvar;
-    private javax.swing.JTextField cpCpf;
+    private javax.swing.JFormattedTextField cpFormatadoCpf;
+    private javax.swing.JFormattedTextField cpFormatadoTelefone;
     private javax.swing.JTextField cpNome;
-    private javax.swing.JTextField cpTelefone;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cpSexo;
+    private javax.swing.JFormattedTextField cpTelefone;
     private javax.swing.JLabel labelCadastro;
     private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelSexo;
     private javax.swing.JLabel labelTelefone;
     // End of variables declaration//GEN-END:variables
 }
